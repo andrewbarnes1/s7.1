@@ -7,14 +7,16 @@ char buffer[1024]; /* 1k bytes */
 
 int main() {
     C12832 lcd(D11, D13, D12, D7, D10);
-    EthernetInterface eth;
-    UDPSocket udp;
+    EthernetInterface eth; //Create the ethernetInterface
+    UDPSocket udp; //Create the UDP Socket
 
-    printf("conecting on DHCP\n");
+    printf("connecting on DHCP\n");
     eth.connect();
+    // Connect to the internet
     const char *ip = eth.get_ip_address();
     printf("IP address is: %s\n", ip ? ip : "No IP");
 
+    //Create the UDP socket
     udp.open( &eth);
 
     /* Listen for UDP on port 65000 */
